@@ -4,46 +4,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args)
     {
-        engine dvs = new engine("no_name", 10, 100, 0, 1000);// конструктор со всеми параметрами
-        cars avto = new cars("no_name", "no_color", 2020, 1000, dvs);// конструктор со всеми параметрами
         int probeg=0;
-        avto.OutputCars();
         boolean f;
-        do {
-            f=false;
-            try {
-                avto.PutCars();
-            }catch (NumberFormatException ex) {//обработка программного исключения
-                f=true;
-                System.out.println("Ошибка: " + ex);
-                System.out.println("Введите данные еще раз!");
-            }catch (MyExceptionRead ex) {//обработка пользовательского исключения
-                f = true;
-                System.out.println("Ошибка: " + ex);
-                System.out.println("Введите данные еще раз!");
-            }
-        }while (f);
-        System.out.println(System.lineSeparator()+"Данные после ввода: ");
-        avto.OutputCars();
-        try{probeg=avto.Drive(10);}
-        catch(MyExceptionOther ex)
-        {
-            System.out.println("Ошибка: "+ex);
-            System.out.println("Завершение работы программы!");
-            System.exit(1);
-        }
-        System.out.println(System.lineSeparator()+"Пробег после тест-драйва: ");
-        System.out.println(probeg+" КМ"+System.lineSeparator());
-        try{avto.Modern(100, 200, 500);}
-        catch(MyExceptionOther ex)
-        {
-            System.out.println("Ошибка: "+ex);
-            System.out.println("Завершение работы программы!");
-            System.exit(1);
-        }
-        System.out.println("После модернизации: ");
-        avto.OutputCars();
-        // массив объектов
+        final int Length=2;
+        // одномерный массив объектов
         engine []arrayE = new engine[2];
         for(int i=0;i<arrayE.length;i++)
         {
@@ -108,6 +72,87 @@ public class Main {
         for(int i=0; i<arrayC.length;i++)
         {	System.out.println(System.lineSeparator()+"машина "+(i+1));
             arrayC[i].OutputCars();
+        }
+        // двумерный массив
+        engine [][]arrayEngineTwo= new engine[Length][Length];
+        for(int i=0;i<Length;i++)
+            for(int j=0;j<Length;j++)
+            {
+                arrayEngineTwo[i][j]=new engine("no_name");
+            }
+        cars [][]arrayCarsTwo= new cars[Length][Length];
+        for(int i=0;i<Length;i++)
+            for(int j=0;j<Length;j++)
+            {
+                arrayCarsTwo[i][j]=new cars(arrayEngineTwo[i][j]);
+            }
+        int count=1;
+        for(int i=0; i<Length;i++)
+            for(int j=0;j<Length;j++)
+        {
+            System.out.println(System.lineSeparator()+"машина "+count);
+            arrayCarsTwo[i][j].OutputCars();
+            count++;
+        }
+        count=1;
+        for(int i=0; i<Length;i++)
+            for(int j=0;j<Length;j++)
+        {	System.out.println(System.lineSeparator()+"машина "+count);
+            do {
+                f=false;
+                try {
+                    arrayCarsTwo[i][j].PutCars();
+                }catch (NumberFormatException ex) {
+                    f=true;
+                    System.out.println("Ошибка: " + ex);
+                    System.out.println("Введите данные еще раз!");
+                }catch (MyExceptionRead ex) {
+                    f = true;
+                    System.out.println("Ошибка: " + ex);
+                    System.out.println("Введите данные еще раз!");
+                }
+            }while (f);
+        }
+        System.out.println(System.lineSeparator()+"Данные после ввода: ");
+            count=1;
+        for(int i=0; i<Length;i++)
+            for(int j=0;j<Length;j++)
+            {
+                System.out.println(System.lineSeparator()+"машина "+count);
+                arrayCarsTwo[i][j].OutputCars();
+                count++;
+            }
+        System.out.println(System.lineSeparator()+"Пробег после тест-драйва: ");
+        count=1;
+        for(int i=0; i<Length;i++)
+            for(int j=0;j<Length;j++)
+        {
+            try{probeg=arrayCarsTwo[i][j].Drive(10);}
+            catch(MyExceptionOther ex)
+            {
+                System.out.println("Ошибка: "+ex);
+                System.out.println("Завершение работы программы!");
+                System.exit(1);
+            }
+            System.out.println(System.lineSeparator()+"машина "+count);
+            System.out.println(probeg+" КМ");
+        }
+        for(int i=0; i<Length;i++)
+            for(int j=0;j<Length;j++)
+        {
+            try{arrayCarsTwo[i][j].Modern(100, 200, 500);}
+            catch(MyExceptionOther ex)
+            {
+                System.out.println("Ошибка: "+ex);
+                System.out.println("Завершение работы программы!");
+                System.exit(1);
+            }
+        }
+        System.out.println(System.lineSeparator()+"После модернизации: ");
+        for(int i=0; i<Length;i++)
+            for(int j=0;j<Length;j++)
+        {	System.out.println(System.lineSeparator()+"машина "+(i+1));
+            arrayCarsTwo[i][j].OutputCars();
         }
     }
 };
