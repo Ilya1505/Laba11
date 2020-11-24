@@ -11,53 +11,13 @@ namespace массивы
         static Exception ex;// исключение класса ex
         static void Main(string[] args)
         {
-            Console.WriteLine("Инициализация:\n");
-            engine dvs = new engine("No_Name", 50, 150, 0, 1000);// конструктор со всеми параметрами
-            cars avto = new cars("no_name", "no_color", 2020, 1000, dvs);// конструктор со всеми параметрами
-            avto.OutputCars();
+            const int Length=2;
             bool f;
-            do
-            {
-                f = false;
-                try { avto.PutCars(); }
-                catch (FormatException ex)// обработка программного исключения
-                {
-                    f = true;
-                    Console.WriteLine("Ошибка: " + ex.Message);
-                    Console.WriteLine("Введите данные еще раз");
-                }
-                catch (Exception ex)// обработка пользовательского исключения
-                {
-                    f = true;
-                    Console.WriteLine("Ошибка: " + ex.Message);
-                    Console.WriteLine("Введите данные еще раз");
-                }
-            } while (f);
-            Console.WriteLine("\nДанные после ввода:");
-            avto.OutputCars();
-            int probegAfterDrive = 0;
-            try { probegAfterDrive = avto.Drive(10); }
-            catch (Exception ex)// обработка пользовательского исключения
-            {
-                Console.WriteLine("Ошибка: " + ex.Message);
-                Console.WriteLine("Завершение работы программы");
-                Environment.Exit(1);
-            }
-            Console.Write("\nПробег после тест-драйва: ");
-            Console.WriteLine(probegAfterDrive);
-            try { avto.Modern(100, 200, 500); }
-            catch (Exception ex)// обработка пользовательского исключения
-            {
-                Console.WriteLine("Ошибка: " + ex.Message);
-                Console.WriteLine("Завершение работы программы");
-                Environment.Exit(1);
-            }
-            Console.WriteLine("\n\nПосле модернизации:");
-            avto.OutputCars();
+            int probegAfterDrive=0;
             // объявление и инициализация массива автомобилей
-            engine[] arrayE = new engine[2];
-            cars[] arrayC = new cars[2];
-            for (int i = 0; i < arrayC.Length; i++)
+            engine[] arrayE = new engine[Length];
+            cars[] arrayC = new cars[Length];
+            for (int i = 0; i < Length; i++)
             {
                 arrayE[i] = new engine("no_name");
                 arrayC[i] = new cars(arrayE[i]);
@@ -65,7 +25,7 @@ namespace массивы
                 arrayC[i].OutputCars();
             }
             Console.WriteLine("\nВвод данных:");
-            for (int i = 0; i < arrayC.Length; i++)// заполнение массива
+            for (int i = 0; i < Length; i++)// заполнение массива
             {
                 Console.WriteLine("\nМашина " + (i + 1));
                 do
@@ -87,12 +47,12 @@ namespace массивы
                 } while (f);
             }
             Console.WriteLine("\nДанные после ввода:");
-            for (int i = 0; i < arrayC.Length; i++)// заполнение массива
+            for (int i = 0; i < Length; i++)// заполнение массива
             {
                 Console.WriteLine("\nМашина " + (i + 1));
                 arrayC[i].OutputCars();
             }
-            for (int i = 0; i < arrayC.Length; i++)
+            for (int i = 0; i < Length; i++)
             {
                 try { probegAfterDrive = arrayC[i].Drive(10); }
                 catch (Exception ex)
@@ -103,11 +63,11 @@ namespace массивы
                 }
             }
             Console.WriteLine("\nПробег после тест-драйва: ");
-            for (int i = 0; i < arrayC.Length; i++)// возвращаемы параметр через out
+            for (int i = 0; i < Length; i++)// возвращаемы параметр через out
             {
                 Console.WriteLine("\nМашина " + (i + 1) + ": " + probegAfterDrive + "КМ");
             }
-            for (int i = 0; i < arrayC.Length; i++)
+            for (int i = 0; i < Length; i++)
             {
                 try { arrayC[i].Modern(100, 200, 500); }
                 catch (Exception ex)
@@ -123,6 +83,92 @@ namespace массивы
                 Console.WriteLine("\n");
                 arrayC[i].OutputCars();
             }
+            // двумерный массив
+            engine[,] arrayEngineTwo = new engine[Length, Length];
+            cars[,] arrayCarsTwo = new cars[Length, Length];
+            int count = 1;
+            for (int i = 0; i < Length; i++)
+            for (int j = 0; j < Length; j++) 
+            {
+                arrayEngineTwo[i,j] = new engine("no_name");
+                arrayCarsTwo[i, j] = new cars(arrayEngineTwo[i, j]);
+                Console.WriteLine("\nМашина " + count);
+                arrayCarsTwo[i, j].OutputCars();
+                count++;
+            }
+            Console.WriteLine("\nВвод данных:");
+            count = 1;
+            for (int i = 0; i < Length; i++)
+            for (int j = 0; j < Length; j++)// заполнение массива
+            {
+                Console.WriteLine("\nМашина " + count);
+                count++;
+                do
+                {
+                    f = false;
+                    try { arrayCarsTwo[i, j].PutCars(); }
+                    catch (FormatException ex)
+                    {
+                        f = true;
+                        Console.WriteLine("Ошибка: " + ex.Message);
+                        Console.WriteLine("Введите данные еще раз");
+                    }
+                    catch (Exception ex)
+                    {
+                        f = true;
+                        Console.WriteLine("Ошибка: " + ex.Message);
+                        Console.WriteLine("Введите данные еще раз");
+                    }
+                } while (f);
+            }
+            Console.WriteLine("\nДанные после ввода:");
+            count = 1;
+            for (int i = 0; i < Length; i++)
+            for (int j = 0; j < Length; j++)
+            {
+                Console.WriteLine("\nМашина " + count);
+                arrayCarsTwo[i, j].OutputCars();
+                count++;
+            }
+            for (int i = 0; i < Length; i++)
+            for (int j = 0; j < Length; j++)
+            {
+                try { probegAfterDrive = arrayCarsTwo[i, j].Drive(10); }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ошибка: " + ex.Message);
+                    Console.WriteLine("Завершение работы программы");
+                    Environment.Exit(1);
+                }
+            }
+            Console.WriteLine("\nПробег после тест-драйва: ");
+            count = 1;
+            for (int i = 0; i < Length; i++)
+            for (int j = 0; j < Length; j++)
+            {
+                Console.WriteLine("\nМашина " + count + ": " + probegAfterDrive + "КМ");
+                count++;
+            }
+            for (int i = 0; i < Length; i++)
+            for (int j = 0; j < Length; j++)
+            {
+                try { arrayCarsTwo[i, j].Modern(100, 200, 500); }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ошибка: " + ex.Message);
+                    Console.WriteLine("Завершение работы программы");
+                    Environment.Exit(1);
+                }
+            }
+            Console.WriteLine("\nПосле модернизации: ");
+            count = 1;
+            for (int i = 0; i < Length; i++)
+                for (int j = 0; j < Length; j++)
+                {
+                    Console.WriteLine("\nМашина " + count);
+                    arrayCarsTwo[i, j].OutputCars();
+                    count++;
+                }
             Console.ReadLine();
         }
         class engine// двигатель
