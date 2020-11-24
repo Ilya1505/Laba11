@@ -52,20 +52,19 @@ namespace массивы
                 Console.WriteLine("\nМашина " + (i + 1));
                 arrayC[i].OutputCars();
             }
+            Console.WriteLine("\nПробег после тест-драйва: ");
             for (int i = 0; i < Length; i++)
             {
-                try { probegAfterDrive = arrayC[i].Drive(10); }
+                try { 
+                    probegAfterDrive = arrayC[i].Drive(10);
+                    Console.WriteLine("\nМашина " + (i + 1) + ": " + probegAfterDrive + "КМ");
+                }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Ошибка: " + ex.Message);
                     Console.WriteLine("Завершение работы программы");
                     Environment.Exit(1);
                 }
-            }
-            Console.WriteLine("\nПробег после тест-драйва: ");
-            for (int i = 0; i < Length; i++)// возвращаемы параметр через out
-            {
-                Console.WriteLine("\nМашина " + (i + 1) + ": " + probegAfterDrive + "КМ");
             }
             for (int i = 0; i < Length; i++)
             {
@@ -83,7 +82,7 @@ namespace массивы
                 Console.WriteLine("\n");
                 arrayC[i].OutputCars();
             }
-            // двумерный массив
+             //двумерный массив
             engine[,] arrayEngineTwo = new engine[Length, Length];
             cars[,] arrayCarsTwo = new cars[Length, Length];
             int count = 1;
@@ -130,24 +129,21 @@ namespace массивы
                 arrayCarsTwo[i, j].OutputCars();
                 count++;
             }
+            count = 1;
+            Console.WriteLine("\nПробег после тест-драйва: ");
             for (int i = 0; i < Length; i++)
             for (int j = 0; j < Length; j++)
             {
-                try { probegAfterDrive = arrayCarsTwo[i, j].Drive(10); }
+                try { probegAfterDrive = arrayCarsTwo[i, j].Drive(10);
+                Console.WriteLine("\nМашина " + count + ": " + probegAfterDrive + "КМ");
+                count++;
+                }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Ошибка: " + ex.Message);
                     Console.WriteLine("Завершение работы программы");
                     Environment.Exit(1);
                 }
-            }
-            Console.WriteLine("\nПробег после тест-драйва: ");
-            count = 1;
-            for (int i = 0; i < Length; i++)
-            for (int j = 0; j < Length; j++)
-            {
-                Console.WriteLine("\nМашина " + count + ": " + probegAfterDrive + "КМ");
-                count++;
             }
             for (int i = 0; i < Length; i++)
             for (int j = 0; j < Length; j++)
