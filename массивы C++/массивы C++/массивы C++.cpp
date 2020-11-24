@@ -296,51 +296,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	system("color F0");
 	engine dvs("св-01", 10, 100, 0, 400);
 	cars avto(2020, "No_Name", "No_Color", 1000, dvs);
-	cout << "машина 1:";
-	avto.OutputCars();
+	const int Length = 2;
 	bool f;
-	do{
-		f = false;
-		try{ avto.PutCars(); }
-		catch (exception &ex)
-		{
-			cout << "Ошибка ввода: " << ex.what() << endl;
-			cout << "Повторите попытку ввода!" << endl;
-			f = true;
-		}
-	} while (f);
-	printf("\nДанные после ввода:");
-	avto.OutputCars();
-	try{ Drive(&avto, 10); }
-	catch (MyException &ex)
-	{
-		cout << ex.what() << endl;
-		cout << "Код ошибки: " << ex.Code() << endl;
-		cout << "завершение работы программы!";
-		getch();
-		exit(1);
-	}
-	printf("\nПосле тест-драйва:");
-	avto.OutputCars();
-	try{ avto.Modern(100, 200, 500); }
-	catch (MyException &ex)
-	{
-		cout << ex.what() << endl;
-		cout << "Код ошибки: " << ex.Code() << endl;
-		cout << "завершение работы программы!";
-		getch();
-		exit(1);
-	}
-	printf("\nПосле модернизации:");
-	avto.OutputCars();
-	//Работа с массивом
+	//Работа с одномерным массивом
 	cars avtoArray[3] = { 1000, 2000, 3000 };
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < Length; i++)
 	{
 		cout << endl << "Машина " << i + 1;
 		avtoArray[i].OutputCars();
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < Length; i++)
 	{
 		cout << endl << "Машина " << i + 1;
 		do{
@@ -355,12 +320,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		} while (f);
 	}
 	printf("\nДанные после ввода:\n");
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < Length; i++)
 	{
 		cout << endl << "Машина " << i + 1;
 		avtoArray[i].OutputCars();
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < Length; i++)
 	{
 		try{ Drive(&avtoArray[i], 10); }
 		catch (MyException &ex)
@@ -373,12 +338,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 	printf("После тест-драйва:\n");
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < Length; i++)
 	{
 		cout << endl << "Машина " << i + 1;
 		avtoArray[i].OutputCars();
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < Length; i++)
 	{
 		try{ avtoArray[i].Modern(100, 200, 500); }
 		catch (MyException &ex)
@@ -391,11 +356,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 	printf("После модернизации:\n");
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < Length; i++)
 	{
 		cout << endl << "Машина " << i + 1;
 		avtoArray[i].OutputCars();
 	}
+	//работа с двумерным массивом
 	getch();
 	return 0;
 }
