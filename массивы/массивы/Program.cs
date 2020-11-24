@@ -11,8 +11,8 @@ namespace массивы
         static Exception ex;// исключение класса ex
         static void Main(string[] args)
         {
-            const int Length=2;
-            bool f;
+            const int Length=2;// размер массива
+            bool f;// флажок для зашиты от некорректного ввода
             int probegAfterDrive=0;
             // объявление и инициализация массива автомобилей
             engine[] arrayE = new engine[Length];
