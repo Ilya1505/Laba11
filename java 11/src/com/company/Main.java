@@ -76,13 +76,13 @@ public class Main {
         // двумерный массив
         engine [][]arrayEngineTwo= new engine[Length][Length];
         for(int i=0;i<Length;i++)
-            for(int j=0;j<Length;j++)
+        for(int j=0;j<Length;j++)
             {
                 arrayEngineTwo[i][j]=new engine("no_name");
             }
         cars [][]arrayCarsTwo= new cars[Length][Length];
         for(int i=0;i<Length;i++)
-            for(int j=0;j<Length;j++)
+        for(int j=0;j<Length;j++)
             {
                 arrayCarsTwo[i][j]=new cars(arrayEngineTwo[i][j]);
             }
@@ -96,7 +96,7 @@ public class Main {
         }
         count=1;
         for(int i=0; i<Length;i++)
-            for(int j=0;j<Length;j++)
+        for(int j=0;j<Length;j++)
         {	System.out.println(System.lineSeparator()+"машина "+count);
             do {
                 f=false;
@@ -112,11 +112,12 @@ public class Main {
                     System.out.println("Введите данные еще раз!");
                 }
             }while (f);
+            count++;
         }
         System.out.println(System.lineSeparator()+"Данные после ввода: ");
             count=1;
         for(int i=0; i<Length;i++)
-            for(int j=0;j<Length;j++)
+        for(int j=0;j<Length;j++)
             {
                 System.out.println(System.lineSeparator()+"машина "+count);
                 arrayCarsTwo[i][j].OutputCars();
@@ -125,7 +126,7 @@ public class Main {
         System.out.println(System.lineSeparator()+"Пробег после тест-драйва: ");
         count=1;
         for(int i=0; i<Length;i++)
-            for(int j=0;j<Length;j++)
+        for(int j=0;j<Length;j++)
         {
             try{probeg=arrayCarsTwo[i][j].Drive(10);}
             catch(MyExceptionOther ex)
@@ -136,9 +137,10 @@ public class Main {
             }
             System.out.println(System.lineSeparator()+"машина "+count);
             System.out.println(probeg+" КМ");
+            count++;
         }
         for(int i=0; i<Length;i++)
-            for(int j=0;j<Length;j++)
+        for(int j=0;j<Length;j++)
         {
             try{arrayCarsTwo[i][j].Modern(100, 200, 500);}
             catch(MyExceptionOther ex)
@@ -149,10 +151,12 @@ public class Main {
             }
         }
         System.out.println(System.lineSeparator()+"После модернизации: ");
+        count=1;
         for(int i=0; i<Length;i++)
-            for(int j=0;j<Length;j++)
-        {	System.out.println(System.lineSeparator()+"машина "+(i+1));
+        for(int j=0;j<Length;j++)
+        {	System.out.println(System.lineSeparator()+"машина "+count);
             arrayCarsTwo[i][j].OutputCars();
+            count++;
         }
     }
 };
