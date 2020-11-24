@@ -298,70 +298,149 @@ int _tmain(int argc, _TCHAR* argv[])
 	cars avto(2020, "No_Name", "No_Color", 1000, dvs);
 	const int Length = 2;
 	bool f;
-	//Работа с одномерным массивом
-	cars avtoArray[3] = { 1000, 2000, 3000 };
-	for (int i = 0; i < Length; i++)
+	////Работа с одномерным массивом
+	//cars avtoArray[3] = { 1000, 2000, 3000 };
+	//for (int i = 0; i < Length; i++)
+	//{
+	//	cout << endl << "Машина " << i + 1;
+	//	avtoArray[i].OutputCars();
+	//}
+	//for (int i = 0; i < Length; i++)
+	//{
+	//	cout << endl << "Машина " << i + 1;
+	//	do{
+	//		f = false;
+	//		try{ avtoArray[i].PutCars(); }
+	//		catch (exception &ex)
+	//		{
+	//			cout << "Ошибка ввода: " << ex.what() << endl;
+	//			cout << "Повторите попытку ввода!" << endl;
+	//			f = true;
+	//		}
+	//	} while (f);
+	//}
+	//printf("\nДанные после ввода:\n");
+	//for (int i = 0; i < Length; i++)
+	//{
+	//	cout << endl << "Машина " << i + 1;
+	//	avtoArray[i].OutputCars();
+	//}
+	//for (int i = 0; i < Length; i++)
+	//{
+	//	try{ Drive(&avtoArray[i], 10); }
+	//	catch (MyException &ex)
+	//	{
+	//		cout << ex.what() << endl;
+	//		cout << "Код ошибки: " << ex.Code() << endl;
+	//		cout << "завершение работы программы!";
+	//		getch();
+	//		exit(1);
+	//	}
+	//}
+	//printf("После тест-драйва:\n");
+	//for (int i = 0; i < Length; i++)
+	//{
+	//	cout << endl << "Машина " << i + 1;
+	//	avtoArray[i].OutputCars();
+	//}
+	//for (int i = 0; i < Length; i++)
+	//{
+	//	try{ avtoArray[i].Modern(100, 200, 500); }
+	//	catch (MyException &ex)
+	//	{
+	//		cout << ex.what() << endl;
+	//		cout << "Код ошибки: " << ex.Code() << endl;
+	//		cout << "завершение работы программы!";
+	//		getch();
+	//		exit(1);
+	//	}
+	//}
+	//printf("После модернизации:\n");
+	//for (int i = 0; i < Length; i++)
+	//{
+	//	cout << endl << "Машина " << i + 1;
+	//	avtoArray[i].OutputCars();
+	//}
+	//работа с двумерным массивом
+	cout << endl << "Двумерный массив:" << endl;
+	cars arrayTwo[Length][Length] = { { 100,200 }, {500 ,1000 } };
+	int count = 1;
+	for (int i = 0; i < Length;i++)
+	for (int j = 0; j < Length; j++)
 	{
-		cout << endl << "Машина " << i + 1;
-		avtoArray[i].OutputCars();
+		cout << endl << "Машина " << count;
+		arrayTwo[i][j].OutputCars();
+		count++;
 	}
+	count = 1;
 	for (int i = 0; i < Length; i++)
+	for (int j = 0; j < Length; j++)
 	{
-		cout << endl << "Машина " << i + 1;
+		cout << endl << "машина " <<count;
 		do{
 			f = false;
-			try{ avtoArray[i].PutCars(); }
+			try{ arrayTwo[i][j].PutCars(); }
 			catch (exception &ex)
 			{
-				cout << "Ошибка ввода: " << ex.what() << endl;
-				cout << "Повторите попытку ввода!" << endl;
+				cout << "ошибка ввода: " << ex.what() << endl;
+				cout << "повторите попытку ввода!" << endl;
 				f = true;
 			}
 		} while (f);
 	}
-	printf("\nДанные после ввода:\n");
+	printf("\nданные после ввода:\n");
+	count = 1;
 	for (int i = 0; i < Length; i++)
+	for (int j = 0; j < Length; j++)
 	{
-		cout << endl << "Машина " << i + 1;
-		avtoArray[i].OutputCars();
+		cout << endl << "Машина " << count;
+		arrayTwo[i][j].OutputCars();
+		count++;
 	}
 	for (int i = 0; i < Length; i++)
+	for (int j = 0; j < Length; j++)
 	{
-		try{ Drive(&avtoArray[i], 10); }
+		try{ Drive(&arrayTwo[i][j], 10); }
 		catch (MyException &ex)
 		{
 			cout << ex.what() << endl;
-			cout << "Код ошибки: " << ex.Code() << endl;
+			cout << "код ошибки: " << ex.Code() << endl;
 			cout << "завершение работы программы!";
 			getch();
 			exit(1);
 		}
 	}
-	printf("После тест-драйва:\n");
+	printf("после тест-драйва:\n");
+	count = 1;
 	for (int i = 0; i < Length; i++)
+	for (int j = 0; j < Length; j++)
 	{
-		cout << endl << "Машина " << i + 1;
-		avtoArray[i].OutputCars();
+		cout << endl << "Машина " << count;
+		arrayTwo[i][j].OutputCars();
+		count++;
 	}
 	for (int i = 0; i < Length; i++)
+	for (int j = 0; j < Length; j++)
 	{
-		try{ avtoArray[i].Modern(100, 200, 500); }
+		try{ arrayTwo[i][j].Modern(100, 200, 500); }
 		catch (MyException &ex)
 		{
 			cout << ex.what() << endl;
-			cout << "Код ошибки: " << ex.Code() << endl;
+			cout << "код ошибки: " << ex.Code() << endl;
 			cout << "завершение работы программы!";
 			getch();
 			exit(1);
 		}
 	}
-	printf("После модернизации:\n");
+	printf("после модернизации:\n");
+	count = 1;
 	for (int i = 0; i < Length; i++)
+	for (int j = 0; j < Length; j++)
 	{
-		cout << endl << "Машина " << i + 1;
-		avtoArray[i].OutputCars();
+		cout << endl << "Машина " << count;
+		arrayTwo[i][j].OutputCars();
+		count++;
 	}
-	//работа с двумерным массивом
 	getch();
 	return 0;
 }
